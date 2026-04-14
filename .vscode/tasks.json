@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-debug",
+      "type": "shell",
+      "command": "powershell.exe",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "gfortran -Og -g -Wall -Wextra -fcheck=all -fbacktrace -fopenmp  A1_ADVECTION.f90 -o app.exe"
+        // "gfortran -Og -g -Wall -Wextra -fcheck=all -fbacktrace -fopenmp  burgers.f90 -o app.exe"
+
+      ],
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "run",
+      "type": "shell",
+      "command": "${workspaceFolder}\\app.exe",
+      "dependsOn": "build-debug"
+    }
+  ]
+}
